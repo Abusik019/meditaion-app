@@ -1,0 +1,15 @@
+:root {
+    --color-bg: #253334;
+    --color-fg: #F7F3F0;
+    --color-primary: #FFFFFF;
+    --color-primary-inverted: #FFFFFF80;
+    --color-card: #FFFFFFE5;
+    --font: "Alegreya", serif;
+    --font-sans: "Alegreya Sans", sans-serif;
+}
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-primary);
+    font-family: var(--font);
+}
