@@ -1,8 +1,11 @@
+@import url('./reset.css');
+
 :root {
     --color-bg: #253334;
     --color-fg: #F7F3F0;
     --color-primary: #FFFFFF;
-    --color-primary-inverted: #FFFFFF80;
+    --color-primary-secondary: #FFFFFF80;
+    --color-primary-inverted: #000000;
     --color-card: #FFFFFFE5;
     --font: "Alegreya", serif;
     --font-sans: "Alegreya Sans", sans-serif;
