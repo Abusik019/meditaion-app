@@ -1,13 +1,7 @@
 <script setup lang="ts">
-import MeditationsList from '@/components/MeditationsList.vue';
-
-
+import { RouterView } from 'vue-router';
 </script>
 
 <template>
-    <main>
-        <MeditationsList />
-    </main>
+    <RouterView />
 </template>
-
-<style lang="scss" scoped></style>
