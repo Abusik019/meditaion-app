@@ -1,9 +1,14 @@
 <script setup lang="ts">
 const data = defineModel<string>();
+const props = withDefaults(defineProps<{
+    type?: string
+}>(), {
+    type: 'text'
+})
 </script>
 
 <template>
-    <input type="text" v-model="data" class="default-input">
+    <input :type="props.type" v-model="data" class="default-input">
 </template>
 
 <style lang="scss" scoped>

@@ -1,5 +1,4 @@
 import { API_ROUTES, client } from '@/api';
-import type { IProfile, IProfileResponse } from '@/interfaces/profile.inteface';
 import type { IStats, IStatsResponse } from '@/interfaces/stats.interface';
 import { defineStore } from 'pinia';
 import { ref } from 'vue';

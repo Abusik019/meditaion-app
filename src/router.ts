@@ -50,7 +50,7 @@ export const router = createRouter({
 router.beforeEach((to) => {
   const authStore = useAuthStore();
 
-  if (!authStore.getToken && to.name != 'login' && to.name != 'register') {
-    router.push({ name: 'login' });
+  if (!authStore.getToken && to.name !== 'login' && to.name !== 'register') {
+    return { name: 'login' };
   }
 });
