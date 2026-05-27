@@ -1,4 +1,4 @@
-export interface IStats {
+export interface IStat {
   id: number;
   created_at: string;
   updated_at: string;
@@ -11,10 +11,24 @@ export interface IStats {
   feeling_anxiety: number;
 }
 
-export interface IStatsResponse {
+export interface ISummary {
+  total_calm: number;
+  total_relax: number;
+  total_focus: number;
+  total_anxiety: number;
+  total_minutes: number;
+}
+
+export interface IPostStatsResponse {
   data: {
-    stat: IStats;
+    stat: IStat;
   };
-  message: string;
+}
+
+export interface IFetchStatsResponse {
+  data: {
+    stats: IStat[];
+    summary: ISummary;
+  };
   status: string;
 }

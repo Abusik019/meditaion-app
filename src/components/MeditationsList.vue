@@ -12,8 +12,7 @@ onMounted(() => {
 
 <template>
     <ul v-if="store.meditations" class="meditation-list">
-        <MeditationItem v-for="item in store.meditations" :key="item.id" :title="item.title"
-            :description="item.description" :duration_min="item.duration_min" />
+        <MeditationItem v-for="item in store.meditations" :key="item.id" v-bind="item" />
     </ul>
 </template>
 

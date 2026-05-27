@@ -37,6 +37,11 @@ export const router = createRouter({
           component: () => import('@/views/MeditationsView.vue'),
         },
         {
+          path: 'meditations/start/:id',
+          name: 'start',
+          component: () => import('@/views/StartMeditationView.vue'),
+        },
+        {
           path: 'stats',
           name: 'stats',
           component: () => import('@/views/StatsView.vue'),

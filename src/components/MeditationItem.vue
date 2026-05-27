@@ -1,7 +1,13 @@
 <script lang="ts" setup>
 import IconPlay from '@/icons/IconPlay.vue';
+import { useRouter } from 'vue-router';
 
-const { title, description, duration_min } = defineProps<{ title: string, description: string, duration_min: number }>();
+const { id, title, description, duration_min } = defineProps<{ id: number, title: string, description: string, duration_min: number }>();
+const router = useRouter();
+
+function onClick() {
+    router.push({ name: 'start', params: { id: id } })
+}
 </script>
 
 <template>
@@ -9,7 +15,7 @@ const { title, description, duration_min } = defineProps<{ title: string, descri
         <h2>{{ title }}</h2>
         <p>{{ description }}</p>
         <div>
-            <button>
+            <button @click="onClick">
                 <span>Начать</span>
                 <IconPlay />
             </button>

@@ -1,19 +1,30 @@
 import { API_ROUTES, client } from '@/api';
-import type { IStats, IStatsResponse } from '@/interfaces/stats.interface';
+import type {
+  IStat,
+  IPostStatsResponse,
+  IFetchStatsResponse,
+  ISummary,
+} from '@/interfaces/stats.interface';
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 
 export const useStatsStore = defineStore('stats', () => {
-  const stats = ref<IStats>();
+  const stats = ref<IStat[]>();
+  const summary = ref<ISummary>();
 
-  async function saveTheFeeling(type: string, value: number) {
-    const { data } = await client().post<IStatsResponse>(API_ROUTES.stats, {
+  async function saveStat(type: string, value: number | undefined) {
+    await client().post<IPostStatsResponse>(API_ROUTES.stats, {
       type,
       value,
     });
-
-    stats.value = data.data.stat;
   }
 
-  return { stats, saveTheFeeling };
+  async function fetchStats() {
+    const { data } = await client().get<IFetchStatsResponse>(API_ROUTES.stats);
+
+    stats.value = data.data.stats;
+    summary.value = data.data.summary;
+  }
+
+  return { stats, summary, saveStat, fetchStats };
 });
