@@ -1,10 +1,26 @@
+import { useAuthStore } from '@/store/auth.store';
 import { createRouter, createWebHistory } from 'vue-router';
 
 export const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/home/meditations',
+      children: [
+        {
+          path: '',
+          component: () => import('@/views/IndexView.vue'),
+        },
+        {
+          path: 'auth/login',
+          name: 'login',
+          component: () => import('@/views/LoginView.vue'),
+        },
+        {
+          path: 'auth/register',
+          name: 'register',
+          component: () => import('@/views/RegisterView.vue'),
+        },
+      ],
     },
     {
       path: '/home',
@@ -21,6 +37,11 @@ export const router = createRouter({
           component: () => import('@/views/MeditationsView.vue'),
         },
         {
+          path: 'meditations/start/:id',
+          name: 'start',
+          component: () => import('@/views/StartMeditationView.vue'),
+        },
+        {
           path: 'stats',
           name: 'stats',
           component: () => import('@/views/StatsView.vue'),
@@ -29,4 +50,12 @@ export const router = createRouter({
     },
   ],
   history: createWebHistory(),
+});
+
+router.beforeEach((to) => {
+  const authStore = useAuthStore();
+
+  if (!authStore.getToken && to.name !== 'login' && to.name !== 'register') {
+    return { name: 'login' };
+  }
 });

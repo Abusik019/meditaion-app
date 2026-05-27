@@ -3,6 +3,16 @@ import IconLogo from '@/icons/IconLogo.vue';
 import IconNavChart from '@/icons/IconNavChart.vue';
 import IconNavExit from '@/icons/IconNavExit.vue';
 import IconNavPlay from '@/icons/IconNavPlay.vue';
+import { useAuthStore } from '@/store/auth.store';
+import { useRouter } from 'vue-router';
+
+const authStore = useAuthStore();
+const router = useRouter();
+
+function logout() {
+    authStore.clearToken();
+    router.push({ name: 'login' })
+}
 </script>
 
 <template>
@@ -24,10 +34,10 @@ import IconNavPlay from '@/icons/IconNavPlay.vue';
                 </RouterLink>
             </li>
             <li>
-                <RouterLink to="/">
+                <button @click="logout">
                     <IconNavExit />
                     <span>Выход</span>
-                </RouterLink>
+                </button>
             </li>
         </ul>
     </header>
@@ -55,7 +65,8 @@ import IconNavPlay from '@/icons/IconNavPlay.vue';
         align-items: center;
         justify-content: center;
 
-        &>a {
+        &>a,
+        >button {
             display: flex;
             flex-direction: column;
             align-items: center;

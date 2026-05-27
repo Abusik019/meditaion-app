@@ -1,13 +1,21 @@
 <script setup lang="ts">
 import MeditationsList from '@/components/MeditationsList.vue';
 import MindStates from '@/components/MindStates.vue';
+import { useProfileStore } from '@/store/profile.store';
+import { onMounted } from 'vue';
+
+const profileStore = useProfileStore();
+
+onMounted(() => {
+    profileStore.fetchProfileInfo();
+})
 </script>
 
 <template>
     <div class="meditations">
         <div class="meditations-content">
             <img src="/user.png" width="129" height="129" alt="user">
-            <h1>Добро пожаловать, Наталья!</h1>
+            <h1>Добро пожаловать, {{ profileStore.profile?.username }}!</h1>
             <p>Как вы сегодня себя чувствуете?</p>
             <MindStates />
         </div>
